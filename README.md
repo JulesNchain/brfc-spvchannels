@@ -59,6 +59,22 @@ The Messages API allows account holders, third parties, or even the general publ
 POST /api/v1/account/{accountid}/channel
 ```
 
+#### Request
+
+```json
+{
+  "public_read": true | false,
+  "public_write": true | false,
+  "sequenced": true | false,
+  "retention": {
+    "min_age_days": null | <number>,
+    "max_age_days": null | <number>,
+    "auto_prune": true | false
+  }
+}
+```
+We recommend that you set sequenced to false and max_age_days to 9999 in the first insdtance.
+
 #### Response
 
 ```json
@@ -67,12 +83,12 @@ POST /api/v1/account/{accountid}/channel
   "href": "string",
   "public_read": true,
   "public_write": true,
-  "sequenced": true,
+  "sequenced": false,
   "locked": true,
   "head": 0,
   "retention": {
     "min_age_days": 0,
-    "max_age_days": 0,
+    "max_age_days": 9999,
     "auto_prune": true
   },
   "access_tokens": [
